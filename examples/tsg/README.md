@@ -81,6 +81,23 @@ Every question explicitly refers to the named `target`, `query`, `headings`, and
 `context` fields in state. Question-map IDs are response correlation keys and are not
 used by the model for inference.
 
+## Run without an API key
+
+With Python 3 and Rust nightly installed, run a complete local mock demo from the
+crate root (use `python3` instead of `python` where needed):
+
+```console
+python examples/tsg/mock_demo.py
+```
+
+The helper starts an HTTP server on an available loopback port, runs the actual
+`tsg grep` example over `examples/tsg/demo/`, and stops the server when it exits.
+It uses the section segmenter and canned scores: `0.95`, `0.85`, and `0.90` for
+three known permit passages, and `0.05` for everything else. These values test
+request serialization, HTTP transport, response decoding, filtering, and source
+display; they are not AI judgments. No real API key is needed or sent. Cargo may
+download dependencies during the initial build.
+
 ## Passage construction and coverage
 
 The scanner follows `.gitignore`, `.ignore`, global Git excludes, and hidden-file filters

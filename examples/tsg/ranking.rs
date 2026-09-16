@@ -54,7 +54,7 @@ impl TopMatches {
                 std::process::id(),
                 NEXT_ID.fetch_add(1, AtomicOrdering::Relaxed)
             ));
-            let mut builder = fs::DirBuilder::new();
+            let builder = &mut fs::DirBuilder::new();
             #[cfg(unix)]
             {
                 use std::os::unix::fs::DirBuilderExt;
